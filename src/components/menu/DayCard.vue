@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-// (Script identique à la réponse précédente)
 import { defineProps, defineEmits, computed } from 'vue';
 const props = defineProps({ day: { type: Object, required: true } });
 const emit = defineEmits(['show-recipe']);
@@ -32,10 +31,21 @@ const dayCardStyle = computed(() => ({ borderTopColor: dayColors[props.day.dayOf
 </script>
 
 <style scoped>
-/* (Styles identiques à la réponse précédente) */
-.day-card { background-color: var(--color-card-bg); border: 1px solid var(--color-border); border-top: 5px solid; border-radius: 15px; padding: 25px; transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); }
-.day-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); }
-.day-card.current-day { background-color: #f7feff; border: 2px solid var(--color-primary); border-top-width: 5px; box-shadow: 0 8px 25px rgba(26, 188, 156, 0.2); }
+.day-card {
+    background-color: var(--color-card-bg); border: 1px solid var(--color-border);
+    border-top: 5px solid; border-radius: 15px; padding: 25px;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
+    display: flex; flex-direction: column; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+.day-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    border-color: var(--color-primary);
+}
+.day-card.current-day { 
+    background-color: #f7feff; border: 2px solid var(--color-primary); border-top-width: 5px;
+    box-shadow: 0 8px 25px rgba(26, 188, 156, 0.2);
+}
 .day-card h2 { color: var(--color-secondary); margin-bottom: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.4em; border-bottom: none; padding-bottom: 5px; }
 .day-card .activity { font-size: 0.95em; color: var(--color-text-light); margin-bottom: 20px; font-style: italic; border-bottom: 1px dashed #eee; padding-bottom: 15px; }
 .day-card .activity .emoji { margin-right: 5px; font-size: 1.1em; }

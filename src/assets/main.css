@@ -1,5 +1,4 @@
-/* --- Google Fonts (déjà importées dans index.html, mais bon à savoir) --- */
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Nunito:wght@400;700&family=Pacifico&display=swap'); */
+
 
 /* --- Variables Couleurs & Styles Globaux --- */
 :root {
@@ -50,5 +49,7 @@ a {
 a:hover {
   color: #16a085;
 }
-
-/* Peut-être des styles pour les titres globaux h1, h2... s'ils ne sont pas spécifiques aux composants */
+body.modal-open {
+  overflow: hidden;
+  padding-right: 15px; 
+}

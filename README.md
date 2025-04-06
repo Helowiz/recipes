@@ -1,3 +1,7 @@
+# Recipes 🍲✨
+
+**Code by AI, deploy by me.**
+
 ## 🌟 Features
 
 *   **Weekly Display:** Clear day-by-day menu visualization.
