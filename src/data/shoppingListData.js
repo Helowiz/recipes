@@ -1,7 +1,78 @@
-// Contenu HTML pour la modal Liste de Courses
-export const shoppingListHTML = `
-    <h4>🍎 Fruits & Légumes (Bio & Saison Avril)</h4><ul><li>Pommes <strong>(~4-5)</strong></li><li>Poires <strong>(~3)</strong></li><li>Bananes <strong>(~3-4)</strong></li><li>Oranges/Kiwis <strong>(~2-3)</strong></li><li>Pommes de terre <strong>(~1.5-2 kg)</strong></li><li>Carottes <strong>(~1 kg)</strong></li><li>Oignons jaunes <strong>(Filet ~500g)</strong></li><li>Ail <strong>(1 tête)</strong></li><li>Épinards frais <strong>(2 sachets)</strong></li><li>Radis <strong>(1 botte)</strong></li><li>Blettes <strong>(1 botte)</strong></li><li>Laitue/Salade <strong>(1)</strong></li><li>Champignons Paris <strong>(250g)</strong></li><li>Concombre <strong>(1)</strong></li><li>Citron <strong>(2)</strong></li><li>Persil/Ciboulette <strong>(1 botte)</strong></li><li>Avocat <strong>(1)</strong></li><li><em>Option: Fraises...</em></li></ul>
-    <h4>🍞 Épicerie Sèche (Bio)</h4><ul><li>Flocons d'avoine <strong>(Paquet 500g+)</strong></li><li>Riz complet <strong>(Paquet 500g+)</strong></li><li>Quinoa <strong>(Paquet 500g)</strong></li><li>Pâtes complètes <strong>(Paquet 500g)</strong></li><li>Semoule complète <strong>(Paquet 500g)</strong></li><li>Pain complet <strong>(1 grand)</strong></li><li>Galettes de riz <strong>(1 paquet)</strong></li><li>Galettes de sarrasin <strong>(1 paquet)</strong></li><li>Wraps/Galettes blé <strong>(1 paquet)</strong></li><li>Lentilles vertes sèches <strong>(Paquet 500g)</strong></li><li>Lentilles corail sèches <strong>(Paquet 500g)</strong></li><li>Pois chiches secs <strong>(Paquet 1kg)</strong></li><li>Haricots rouges secs <strong>(Paquet 500g)</strong></li><li>Haricots blancs secs <strong>(Paquet 500g)</strong></li><li>Graines de chia <strong>(Sachet)</strong></li><li>Graines de tournesol <strong>(Sachet)</strong></li><li>Graines de courge <strong>(Sachet)</strong></li><li>Amandes <strong>(Petit sachet ~50g)</strong></li><li>Chocolat noir >70% <strong>(1 tablette)</strong></li><li><em>Option: Muesli/Granola</em></li></ul>
-    <h4>🥛 Crèmerie & Protéines (Bio)</h4><ul><li>Tofu Nature Ferme <strong>(2 blocs ~400g)</strong></li><li>Œufs <strong>(Boîte 12)</strong></li><li>Yaourts nature <strong>(~12 pots 125g)</strong></li><li>Fromage blanc <strong>(Pot 500g)</strong></li><li>Lait UHT <strong>(1 litre)</strong></li><li><em>Option: Fromage frais, Beurre</em></li></ul>
-    <h4>🥫 Conserves & Bocaux (Bio)</h4><ul><li>Tomates concassées/Coulis <strong>(3 x 400g)</strong></li><li>Maïs doux <strong>(1 petite boîte)</strong></li><li>Compote pommes s/s <strong>(Pack 4 pots)</strong></li><li><em>Option: Lait coco, Tahini, Beurre cacahuète, Purée amande, Miel, Moutarde, Sauce Soja</em></li></ul>
-    <p style="font-size: 0.85em; margin-top: 15px; text-align: center; color: var(--color-text-light);"><em>Vérifiez vos placards pour huiles, vinaigres & épices !</em></p>`;
+// src/data/shoppingListData.js
+
+export const shoppingListData = [
+    {
+        category: '🍎 Fruits & Légumes',
+        emoji: '🍎', // Optionnel: pour le titre h4
+        items: [
+            { id: 'sl1', text: 'Pommes', quantity: '~4-5', checked: false },
+            { id: 'sl2', text: 'Poires', quantity: '~3', checked: false },
+            { id: 'sl3', text: 'Bananes', quantity: '~3-4', checked: false },
+            { id: 'sl4', text: 'Oranges/Kiwis', quantity: '~2-3', checked: false },
+            { id: 'sl5', text: 'Pommes de terre', quantity: '~1.5-2 kg', checked: false },
+            { id: 'sl6', text: 'Carottes', quantity: '~1 kg', checked: false },
+            { id: 'sl7', text: 'Oignons jaunes', quantity: 'Filet ~500g', checked: false },
+            { id: 'sl8', text: 'Ail', quantity: '1 tête', checked: false },
+            { id: 'sl9', text: 'Épinards frais', quantity: '2 sachets', checked: false },
+            { id: 'sl10', text: 'Radis', quantity: '1 botte', checked: false },
+            { id: 'sl11', text: 'Blettes', quantity: '1 botte', checked: false },
+            { id: 'sl12', text: 'Laitue/Salade', quantity: '1', checked: false },
+            { id: 'sl13', text: 'Champignons Paris', quantity: '250g', checked: false },
+            { id: 'sl14', text: 'Concombre', quantity: '1', checked: false },
+            { id: 'sl15', text: 'Citron', quantity: '2', checked: false },
+            { id: 'sl16', text: 'Persil/Ciboulette', quantity: '1 botte', checked: false },
+            { id: 'sl17', text: 'Avocat', quantity: '1', checked: false },
+            { id: 'sl18', text: 'Option: Fraises...', quantity: null, checked: false },
+        ]
+    },
+    {
+        category: '🍞 Épicerie Sèche',
+        emoji: '🍞',
+        items: [
+            { id: 'sl19', text: 'Flocons d\'avoine', quantity: 'Paquet 500g+', checked: false },
+            { id: 'sl20', text: 'Riz complet', quantity: 'Paquet 500g+', checked: false },
+            { id: 'sl21', text: 'Quinoa', quantity: 'Paquet 500g', checked: false },
+            { id: 'sl22', text: 'Pâtes complètes', quantity: 'Paquet 500g', checked: false },
+            { id: 'sl23', text: 'Semoule complète', quantity: 'Paquet 500g', checked: false },
+            { id: 'sl24', text: 'Pain complet', quantity: '1 grand', checked: false },
+            { id: 'sl25', text: 'Galettes de riz', quantity: '1 paquet', checked: false },
+            { id: 'sl26', text: 'Galettes de sarrasin', quantity: '1 paquet', checked: false },
+            { id: 'sl27', text: 'Wraps/Galettes blé', quantity: '1 paquet', checked: false },
+            { id: 'sl28', text: 'Lentilles vertes sèches', quantity: 'Paquet 500g', checked: false },
+            { id: 'sl29', text: 'Lentilles corail sèches', quantity: 'Paquet 500g', checked: false },
+            { id: 'sl30', text: 'Pois chiches secs', quantity: 'Paquet 1kg', checked: false },
+            { id: 'sl31', text: 'Haricots rouges secs', quantity: 'Paquet 500g', checked: false },
+            { id: 'sl32', text: 'Haricots blancs secs', quantity: 'Paquet 500g', checked: false },
+            { id: 'sl33', text: 'Graines de chia', quantity: 'Sachet', checked: false },
+            { id: 'sl34', text: 'Graines de tournesol', quantity: 'Sachet', checked: false },
+            { id: 'sl35', text: 'Graines de courge', quantity: 'Sachet', checked: false },
+            { id: 'sl36', text: 'Amandes', quantity: 'Petit sachet ~50g', checked: false },
+            { id: 'sl37', text: 'Chocolat noir >70%', quantity: '1 tablette', checked: false },
+            { id: 'sl38', text: 'Option: Muesli/Granola', quantity: null, checked: false },
+        ]
+    },
+    {
+        category: '🥛 Crèmerie & Protéines',
+        emoji: '🥛',
+        items: [
+            { id: 'sl39', text: 'Tofu Nature Ferme', quantity: '2 blocs ~400g', checked: false },
+            { id: 'sl40', text: 'Œufs', quantity: 'Boîte 12', checked: false },
+            { id: 'sl41', text: 'Yaourts nature', quantity: '~12 pots 125g', checked: false },
+            { id: 'sl42', text: 'Fromage blanc', quantity: 'Pot 500g', checked: false },
+            { id: 'sl43', text: 'Lait UHT', quantity: '1 litre', checked: false },
+            { id: 'sl44', text: 'Option: Fromage frais, Beurre', quantity: null, checked: false },
+        ]
+    },
+    {
+        category: '🥫 Conserves & Bocaux',
+        emoji: '🥫',
+        items: [
+            { id: 'sl45', text: 'Tomates concassées/Coulis', quantity: '3 x 400g', checked: false },
+            { id: 'sl46', text: 'Maïs doux', quantity: '1 petite boîte', checked: false },
+            { id: 'sl47', text: 'Compote pommes s/s', quantity: 'Pack 4 pots', checked: false },
+            { id: 'sl48', text: 'Option: Lait coco, Tahini, Beurre cacahuète, Purée amande, Miel, Moutarde, Sauce Soja', quantity: null, checked: false },
+        ]
+    }
+];
+
+export const shoppingListNote = '<em>Vérifiez vos placards pour huiles, vinaigres & épices !</em>';

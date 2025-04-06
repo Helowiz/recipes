@@ -5,6 +5,12 @@
     <p class="activity">
         <span class="emoji">{{ day.activityEmoji || '✨' }}</span>Activité : {{ day.activity }}
     </p>
+    <div v-if="prepTasksForTomorrow.length > 0" class="prep-tomorrow">
+        <h4><span class="emoji">⏰</span> Pour Demain :</h4>
+        <ul>
+            <li v-for="(task, index) in prepTasksForTomorrow" :key="index">{{ task }}</li>
+        </ul>
+    </div>
     <ul>
       <li v-for="meal in day.meals" :key="meal.id" class="meal-item" @click="emitShowRecipe(meal.id)">
         <strong :class="mealTypeClass(meal.type)">
@@ -20,14 +26,36 @@
 
 <script setup>
 import { defineProps, defineEmits, computed } from 'vue';
-const props = defineProps({ day: { type: Object, required: true } });
+import { recipes } from '@/data/recipes.js';
+const props = defineProps({
+  day: { type: Object, required: true },
+  allWeeklyData: { type: Array, required: true }, 
+  currentIndex: { type: Number, required: true } 
+});
 const emit = defineEmits(['show-recipe']);
+
 const isCurrentDay = computed(() => new Date().getDay() === props.day.dayOfWeek);
 const emitShowRecipe = (recipeId) => emit('show-recipe', recipeId);
 const mealTypeClass = (type) => `meal-${type}`;
 const mealTypeLabel = (type) => { const labels={ breakfast: 'Petit Déjeuner', lunch: 'Déjeuner', snack: 'Collation', dinner: 'Dîner', 'evening-snack': 'Collation Soirée' }; return labels[type]||'Repas'; };
 const dayColors = { 1: '#e74c3c', 2: '#f39c12', 3: '#f1c40f', 4: '#2ecc71', 5: '#3498db', 6: '#9b59b6', 0: '#34495e' };
 const dayCardStyle = computed(() => ({ borderTopColor: dayColors[props.day.dayOfWeek] || '#ccc' }));
+
+const prepTasksForTomorrow = computed(() => {
+    const tasks = [];
+    const nextDayIndex = (props.currentIndex + 1) % props.allWeeklyData.length; // Gère le retour au Lundi depuis Dimanche
+    const nextDayData = props.allWeeklyData[nextDayIndex];
+
+    if (nextDayData && nextDayData.meals) {
+        nextDayData.meals.forEach(meal => {
+            const recipe = recipes[meal.id] || recipes['default'];
+            if (recipe.prepRequiredTheDayBefore && recipe.prepTasks) {
+                 tasks.push(...recipe.prepTasks); 
+            }
+        });
+    }
+    return [...new Set(tasks)];
+});
 </script>
 
 <style scoped>
@@ -61,4 +89,34 @@ const dayCardStyle = computed(() => ({ borderTopColor: dayColors[props.day.dayOf
 .portable-info { background-color: #e8f8f5; color: var(--color-primary); border-color: #a3e4d7; }
 .optional-info { background-color: #f4f6f7; color: #7f8c8d; border-color: #e5e7e9; }
 .info-tag .emoji { margin-right: 3px; font-size: 1em; }
+.prep-tomorrow {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #fffaf0; /* Fond crème léger */
+    border: 1px dashed var(--color-prep);
+    border-radius: 8px;
+    font-size: 0.9em;
+}
+.prep-tomorrow h4 {
+    color: var(--color-prep);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1em; /* Taille relative au parent */
+    display: flex;
+    align-items: center;
+}
+ .prep-tomorrow h4 .emoji {
+     margin-right: 8px;
+     font-size: 1.2em; /* Emoji un peu plus grand */
+ }
+.prep-tomorrow ul {
+    list-style: '▹ '; /* Petite flèche en guise de puce */
+    padding-left: 20px;
+    margin: 0;
+}
+ .prep-tomorrow li {
+     margin-bottom: 4px;
+     color: var(--color-text);
+ }
 </style>

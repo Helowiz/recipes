@@ -7,7 +7,7 @@
     />
   </div>
 
-  <!-- Modal Recette : Utilise le slot par défaut de BaseModal -->
+  <!-- Modal Recette -->
   <BaseModal
     :is-open="isRecipeModalOpen"
     :title="currentRecipe?.title"
@@ -15,45 +15,50 @@
     modal-id="recipe"
     id="recipe-modal-overlay"
   >
-    <!-- Injecte le composant RecipeModalContent dans le slot -->
     <RecipeModalContent :recipe="currentRecipe" />
   </BaseModal>
 
-  <!-- Modal Liste Courses : Utilise TOUJOURS contentHtml (pour l'instant) -->
-   <!-- NOTE: Pour une cohérence parfaite, il faudrait aussi créer des composants pour ces contenus -->
+  <!-- Modal Liste Courses -->
   <BaseModal
     :is-open="isListModalOpen"
     title='<span class="emoji">🛒</span> Liste de Courses (1 pers. / Semaine)'
-    :content-html="shoppingListContentHTML"
     @close="closeListModal"
     modal-id="shopping-list"
     id="shopping-list-modal-overlay"
-  />
+  >
+    <!-- Injecte le nouveau composant avec les données structurées -->
+    <ShoppingListContent :list-data="shoppingList" :note="shoppingListNote" />
+  </BaseModal>
 
-   <!-- Modal Préparation : Utilise TOUJOURS contentHtml (pour l'instant) -->
+   <!-- Modal Préparation -->
    <BaseModal
     :is-open="isPrepModalOpen"
     title="<span class='emoji'>🧑‍🍳</span> Préparation à l'Avance"
-    :content-html="prepListContentHTML"
     @close="closePrepModal"
     modal-id="prep-list"
     id="prep-list-modal-overlay"
-  />
+  >
+     <!-- Injecte le nouveau composant avec les données structurées -->
+     <PrepListContent :list-data="prepList" :note="prepListNote" />
+   </BaseModal>
 </template>
 
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
 import MenuView from './views/MenuView.vue';
 import BaseModal from './components/modals/BaseModal.vue';
-import RecipeModalContent from './components/modals/RecipeModalContent.vue'; // <-- Importer le nouveau composant
+import RecipeModalContent from './components/modals/RecipeModalContent.vue';
+import ShoppingListContent from './components/modals/ShoppingListContent.vue'; // <-- Importer
+import PrepListContent from './components/modals/PrepListContent.vue';       // <-- Importer
 import { useModal } from './composables/useModal.js';
 import { recipes as recipesImport } from './data/recipes.js';
-import { shoppingListHTML as shoppingListImport } from './data/shoppingListData.js';
-import { prepListHTML as prepListImport } from './data/prepListData.js';
+import { shoppingListData, shoppingListNote } from './data/shoppingListData.js';
+import { prepListData, prepListNote } from './data/prepListData.js';
 
+// Utiliser les données structurées
 const allRecipes = ref(recipesImport);
-const shoppingListContentHTML = ref(shoppingListImport); // Gardé pour l'instant
-const prepListContentHTML = ref(prepListImport);       // Gardé pour l'instant
+const shoppingList = ref(shoppingListData); // <-- Utiliser les données structurées
+const prepList = ref(prepListData);         // <-- Utiliser les données structurées
 
 // Modals states and controls
 const { isOpen: isRecipeModalOpen, open: openRecipeInternal, close: closeRecipeModal } = useModal();

@@ -10,7 +10,7 @@ export const recipes = {
             { item: 'Flocons d\'avoine Bio', quantity: 70, unit: 'g' },
             { item: 'Lait Bio ou Eau', quantity: 250, unit: 'ml', note: 'environ' },
             { item: 'Fruit de saison Bio', quantity: 1, unit: 'unité' },
-            { item: 'Graines de chia Bio', quantity: 1, unit: 'c.s.' },
+            { item: 'Graines de chia Bio', quantity: 1, unit: 'c.s.' }, // cuillère à soupe
             { item: 'Graines de tournesol Bio', quantity: 20, unit: 'g' },
         ],
         steps: [
@@ -25,9 +25,9 @@ export const recipes = {
         emoji: '🥗',
         mealType: 'lunch',
         ingredients: [
-            { item: 'Quinoa Bio CUIT', quantity: 150, unit: 'g', note: 'environ (80g sec)' },
-            { item: 'Lentilles vertes Bio CUITES', quantity: 200, unit: 'g', note: 'environ (70g sec)' },
-            { item: 'Légumes crus Bio variés', quantity: 1, unit: 'Grande portion' },
+            { item: 'Quinoa Bio', quantity: 150, unit: 'g', note: 'CUIT (env. 80g sec)', prepSuggestion: 'Cuire en grande quantité en début de semaine' },
+            { item: 'Lentilles vertes Bio', quantity: 200, unit: 'g', note: 'CUIT (env. 70g sec)', prepSuggestion: 'Cuire en grande quantité en début de semaine' },
+            { item: 'Légumes crus Bio variés', quantity: 1, unit: 'Grande portion', prepSuggestion: 'Laver/Couper certains légumes à l\'avance' },
             { item: 'Huile colza Bio', quantity: 1, unit: 'c.s.' },
             { item: 'Vinaigre Bio', quantity: 1, unit: 'c.s.' },
             { item: 'Sel, Poivre', quantity: null, unit: 'Selon goût' }
@@ -57,18 +57,18 @@ export const recipes = {
         mealType: 'dinner',
         ingredients: [
             { item: 'Tofu nature Bio', quantity: 180, unit: 'g' },
-            { item: 'Pommes de terre Bio', quantity: 250, unit: 'g', note: 'environ' },
-            { item: 'Épinards frais Bio', quantity: 1, unit: 'sachet' },
+            { item: 'Pommes de terre Bio', quantity: 250, unit: 'g', note: 'environ', prepSuggestion: 'Cuire à l\'avance si désiré' },
+            { item: 'Épinards frais Bio', quantity: 1, unit: 'sachet', prepSuggestion: 'Laver/Essorer à l\'avance' },
             { item: 'Huile Bio', quantity: 1, unit: 'c.c.' },
             { item: 'Sauce Soja Bio', quantity: 1, unit: 'c.s.' },
             { item: 'Ail', quantity: 0.5, unit: 'gousse', optional: true },
             { item: 'Sel, Poivre', quantity: null, unit: 'Selon goût' }
         ],
         steps: [
-            'Couper les pommes de terre et les faire bouillir dans l\'eau salée jusqu\'à tendreté (~15-20 min).',
-            'Pendant ce temps, couper le tofu en dés ou tranches. Le faire dorer à la poêle avec l\'huile et la sauce soja. Réserver.',
-            'Dans la même poêle, faire revenir l\'ail haché (si utilisé) puis ajouter les épinards et faire sauter jusqu\'à ce qu\'ils soient "tombés" (~5 min). Saler, poivrer.',
-            'Égoutter les pommes de terre. Servir le tofu, les pommes de terre et les épinards ensemble.'
+            'Si les pommes de terre ne sont pas précuites, les couper et les faire bouillir dans l\'eau salée jusqu\'à tendreté (~15-20 min).',
+            'Couper le tofu en dés ou tranches. Le faire dorer à la poêle avec l\'huile et la sauce soja. Réserver.',
+            'Dans la même poêle, faire revenir l\'ail haché (si utilisé) puis ajouter les épinards (lavés si nécessaire) et faire sauter jusqu\'à ce qu\'ils soient "tombés" (~5 min). Saler, poivrer.',
+            'Égoutter les pommes de terre si elles viennent d\'être cuites. Servir le tofu, les pommes de terre et les épinards ensemble.'
         ]
     },
     'snack_evening_ricecake': {
@@ -83,23 +83,26 @@ export const recipes = {
         ],
         steps: ['Tartiner les galettes avec la purée d\'oléagineux.']
     },
-    'overnight_oats_1': { // Utilisé Mardi et Vendredi
-        id: 'overnight_oats_1',
+    'overnight_oats_1': { // ID unique pour la recette, même si utilisée plusieurs fois
+        id: 'overnight_oats_recipe', // Renommé pour clarté
         title: 'Overnight Oats',
         emoji: '☀️',
         mealType: 'breakfast',
+        prepRequiredTheDayBefore: true,
+        prepTasks: [
+             'Mélanger flocons d\'avoine, liquide, graines de chia et fruit dans un contenant hermétique.',
+             'Laisser au frigo toute la nuit.'
+        ],
         ingredients: [
-            // Quantités basées sur la version du Vendredi (60g), ajuste si nécessaire pour Mardi
+            // Utiliser les quantités les plus courantes ou moyennes si elles varient légèrement
             { item: 'Flocons d\'avoine Bio', quantity: 60, unit: 'g' },
             { item: 'Lait Bio ou Yaourt', quantity: 175, unit: 'ml/g', note: '150-200' },
             { item: 'Graines de chia Bio', quantity: 1, unit: 'c.s.' },
             { item: 'Fruit Bio (ex: poire, banane écrasée)', quantity: 100, unit: 'g', note: 'râpé ou coupé' },
         ],
         steps: [
-            'La veille au soir : Mélanger tous les ingrédients dans un bocal ou un contenant hermétique.',
-            'Bien fermer et laisser reposer au réfrigérateur toute la nuit.'
-        ],
-        notes: 'Préparer la veille.'
+            'Sortir du réfrigérateur et déguster !' // L'étape principale est la veille
+        ]
     },
      'lunch_quinoa_chickpea_salad': {
         id: 'lunch_quinoa_chickpea_salad',
@@ -108,9 +111,9 @@ export const recipes = {
         mealType: 'lunch',
         isPortable: true,
         ingredients: [
-            { item: 'Quinoa Bio CUIT', quantity: 150, unit: 'g', note: 'froid' },
-            { item: 'Pois chiches Bio CUITS', quantity: 150, unit: 'g' },
-            { item: 'Légumes crus Bio variés', quantity: 150, unit: 'g', note: 'coupés/râpés' },
+            { item: 'Quinoa Bio', quantity: 150, unit: 'g', note: 'CUIT froid', prepSuggestion: 'Cuire en grande quantité en début de semaine' },
+            { item: 'Pois chiches Bio', quantity: 150, unit: 'g', note: 'CUITS', prepSuggestion: 'Cuire en grande quantité en début de semaine' },
+            { item: 'Légumes crus Bio variés', quantity: 150, unit: 'g', note: 'coupés/râpés', prepSuggestion: 'Laver/Couper certains légumes à l\'avance' },
             { item: 'Vinaigrette (Huile, Vinaigre, Sel, Poivre)', quantity: 1, unit: 'portion', note: 'à préparer' },
         ],
         steps: [
@@ -139,7 +142,7 @@ export const recipes = {
         ingredients: [
             { item: 'Pâtes complètes Bio', quantity: 80, unit: 'g', note: 'sec' },
             { item: 'Coulis tomate Bio', quantity: 200, unit: 'g' },
-            { item: 'Pois chiches Bio CUITS', quantity: 150, unit: 'g' },
+            { item: 'Pois chiches Bio', quantity: 150, unit: 'g', note: 'CUITS', prepSuggestion: 'Cuire en grande quantité en début de semaine' },
             { item: 'Huile olive Bio', quantity: 1, unit: 'c.c.' },
             { item: 'Oignon Bio', quantity: 0.5, unit: 'unité', optional: true },
             { item: 'Ail Bio', quantity: 0.5, unit: 'gousse', optional: true },
@@ -175,8 +178,8 @@ export const recipes = {
         isPortable: true,
         ingredients: [
             { item: 'Galette blé complet Bio', quantity: 1, unit: 'grande' },
-            { item: 'Houmous (maison/acheté)', quantity: 100, unit: 'g', note:'environ 3-4 c.s.'},
-            { item: 'Légumes crus Bio variés', quantity: 150, unit: 'g', note: 'râpés/coupés' },
+            { item: 'Houmous', quantity: 100, unit: 'g', note:'env. 3-4 c.s. (maison/acheté)', prepSuggestion: 'Préparer le houmous à l\'avance'},
+            { item: 'Légumes crus Bio variés', quantity: 150, unit: 'g', note: 'râpés/coupés', prepSuggestion: 'Laver/Couper certains légumes à l\'avance' },
             { item: 'Feta Bio ou Restes Tofu', quantity: 30, unit: 'g', optional: true }
         ],
         steps: [
@@ -202,26 +205,26 @@ export const recipes = {
         emoji: '🥡',
         mealType: 'dinner',
         ingredients: [
-            { item: 'Riz complet Bio CUIT', quantity: 150, unit: 'g', note: 'environ (70g sec)' },
+            { item: 'Riz complet Bio', quantity: 150, unit: 'g', note: 'CUIT (env. 70g sec)', prepSuggestion: 'Cuire en grande quantité en début de semaine' },
             { item: 'Tofu ferme Bio', quantity: 180, unit: 'g' },
-            { item: 'Légumes Bio variés', quantity: 200, unit: 'g', note: 'champignons, épinards, carottes...' },
+            { item: 'Légumes Bio variés', quantity: 200, unit: 'g', note: 'champignons, épinards, carottes...', prepSuggestion: 'Couper les légumes du wok à l\'avance' },
             { item: 'Huile sésame/tournesol Bio', quantity: 1, unit: 'c.c.' },
             { item: 'Sauce soja Bio', quantity: 1.5, unit: 'c.s.', note: '1 à 2' }
         ],
         steps: [
             'Réchauffer le riz si nécessaire.',
-            'Couper le tofu en dés et les légumes en morceaux.',
+            'Couper le tofu en dés et les légumes en morceaux (s\'ils ne sont pas pré-coupés).',
             'Faire chauffer l\'huile dans un wok ou une grande poêle.',
             'Ajouter le tofu et faire sauter 2-3 minutes jusqu\'à coloration.',
             'Ajouter les légumes (les plus durs d\'abord) et faire sauter 3-5 minutes jusqu\'à ce qu\'ils soient tendres mais encore croquants.',
             'Ajouter la sauce soja, bien mélanger.',
             'Servir immédiatement sur le riz chaud.'
         ],
-        notes: 'Rapide (~15 min).'
+        notes: 'Rapide (~15 min si riz et légumes prêts).'
     },
-     'breakfast_yogurt_granola': { // Même ID que breakfast_yogurt_muesli si c'est la même base
+     'breakfast_yogurt_granola': {
         id: 'breakfast_yogurt_granola',
-        title: 'Pdj Yaourt/Granola', // Légère variation titre
+        title: 'Pdj Yaourt/Granola',
         emoji: '🥝',
         mealType: 'breakfast',
         ingredients: [
@@ -238,11 +241,11 @@ export const recipes = {
         emoji: '🥔',
         mealType: 'lunch',
         ingredients: [
-            { item: 'Pommes de terre Bio CUITES froides', quantity: 200, unit: 'g' },
-            { item: 'Œufs durs Bio CUITS', quantity: 2, unit: 'unités' },
-            { item: 'Pois chiches Bio CUITS', quantity: 150, unit: 'g' },
-            { item: 'Légumes crus Bio variés coupés', quantity: 150, unit: 'g' },
-            { item: 'Vinaigrette (Huile, Vinaigre, Moutarde, Sel, Poivre)', quantity: 1, unit: 'portion', note: 'à préparer' }
+            { item: 'Pommes de terre Bio', quantity: 200, unit: 'g', note: 'CUITes froides', prepSuggestion: 'Cuire à l\'avance'},
+            { item: 'Œufs durs Bio', quantity: 2, unit: 'unités', note: 'CUITS', prepSuggestion: 'Cuire à l\'avance'},
+            { item: 'Pois chiches Bio', quantity: 150, unit: 'g', note: 'CUITS', prepSuggestion: 'Cuire en grande quantité en début de semaine'},
+            { item: 'Légumes crus Bio variés coupés', quantity: 150, unit: 'g'},
+            { item: 'Vinaigrette', quantity: 1, unit: 'portion', note: 'à préparer (Huile, Vinaigre, Moutarde, Sel, Poivre)'}
         ],
         steps: [
             'Couper les pommes de terre et les œufs durs.',
@@ -268,9 +271,9 @@ export const recipes = {
         emoji: '🥣',
         mealType: 'dinner',
         ingredients: [
-            { item: 'Quinoa Bio CUIT froid', quantity: 150, unit: 'g' },
-            { item: 'Lentilles vertes Bio CUITES froides', quantity: 200, unit: 'g' },
-            { item: 'Légumes crus Bio variés coupés/râpés', quantity: 1, unit: 'Grande portion' },
+            { item: 'Quinoa Bio', quantity: 150, unit: 'g', note: 'CUIT froid', prepSuggestion: 'Cuire en grande quantité en début de semaine' },
+            { item: 'Lentilles vertes Bio', quantity: 200, unit: 'g', note: 'CUITes froides', prepSuggestion: 'Cuire en grande quantité en début de semaine' },
+            { item: 'Légumes crus Bio variés', quantity: 1, unit: 'Grande portion', note: 'coupés/râpés', prepSuggestion: 'Laver/Couper certains légumes à l\'avance'},
             { item: 'Huile olive Bio', quantity: 1, unit: 'c.s.' },
             { item: 'Jus de citron Bio', quantity: 1, unit: 'c.s.' },
             { item: 'Herbes fraîches Bio hachées', quantity: null, unit: 'Selon goût', optional: true },
@@ -296,22 +299,8 @@ export const recipes = {
         ],
         steps: ['Mélanger les graines dans le fromage blanc.']
     },
-    'overnight_oats_2': { // Utilise le même ID que le 1 si la recette est identique
-        id: 'overnight_oats_1', // Réutilisation de l'ID
-        title: 'Overnight Oats',
-        emoji: '☀️',
-        mealType: 'breakfast',
-         ingredients: [
-            { item: 'Flocons d\'avoine Bio', quantity: 60, unit: 'g' }, // Quantité spécifique Vendredi
-            { item: 'Lait Bio ou Yaourt', quantity: 175, unit: 'g', note: '150-200' }, // Quantité spécifique Vendredi
-            { item: 'Graines de chia Bio', quantity: 1, unit: 'c.s.' },
-            { item: 'Fruit Bio (ex: banane écrasée)', quantity: 100, unit: 'g' }, // Fruit spécifique Vendredi
-        ],
-        steps: [
-            'La veille au soir : Mélanger tous les ingrédients dans un bocal ou un contenant hermétique.',
-            'Bien fermer et laisser reposer au réfrigérateur toute la nuit.'
-        ],
-        notes: 'Préparer la veille.'
+    'overnight_oats_2': { // ID pour Vendredi, utilise la même recette que le 1
+        id: 'overnight_oats_1', // Référence la recette déjà définie
     },
      'lunch_leftover_bowl_or_bean_salad': {
         id: 'lunch_leftover_bowl_or_bean_salad',
@@ -319,14 +308,13 @@ export const recipes = {
         emoji: '🍱',
         mealType: 'lunch',
         isPortable: true,
-        ingredients: [ // Les ingrédients dépendent de l'option choisie
-             { item: 'Option 1: Restes Bowl Froid (Jeudi)', quantity: 1, unit: 'portion', optional: true },
-             { item: 'Option 2: Haricots blancs Bio CUITS', quantity: 200, unit: 'g', optional: true },
-             { item: 'Option 2: Légumes crus Bio variés coupés', quantity: 150, unit: 'g', optional: true },
-             { item: 'Option 2: Vinaigrette', quantity: 1, unit: 'portion', note: 'à part', optional: true }
+        ingredients: [ // Liste les ingrédients pour l'option Salade Haricots
+             { item: 'Haricots blancs Bio', quantity: 200, unit: 'g', note: 'CUITS', prepSuggestion: 'Cuire en grande quantité en début de semaine'},
+             { item: 'Légumes crus Bio variés coupés', quantity: 150, unit: 'g' },
+             { item: 'Vinaigrette', quantity: 1, unit: 'portion', note: 'à préparer, à part' }
         ],
         steps: [
-            'Option 1: Emporter la lunch box avec les restes du bowl préparée la veille.',
+            'Option 1: Emporter la portion supplémentaire du Bowl Froid (Dîner Jeudi) préparée la veille.',
             'Option 2: Mélanger les haricots blancs cuits et les légumes crus dans une lunch box. Emporter la vinaigrette séparément.'
         ],
         notes: 'Choisir une des deux options.'
@@ -340,21 +328,23 @@ export const recipes = {
             { item: 'Banane Bio', quantity: 1, unit: 'unité' },
             { item: 'Amandes Bio', quantity: 15, unit: 'g' },
             { item: 'Chocolat noir >70% Bio', quantity: 2, unit: 'carrés (20g)' }
-        ]
-        // Pas d'étapes spécifiques, juste "manger ensemble"
+        ],
+        // Pas d'étapes spécifiques
     },
      'dinner_curry_chickpea': {
         id: 'dinner_curry_chickpea',
         title: 'Dîner Curry Pois Chiches',
         emoji: '🍛',
         mealType: 'dinner',
+        canBatchCook: true, // Bon candidat
+        batchCookNotes: 'Se congèle bien (sans le riz).',
         ingredients: [
-            { item: 'Riz basmati Bio CUIT', quantity: 150, unit: 'g', note: 'environ (60g sec)' },
+            { item: 'Riz basmati Bio', quantity: 150, unit: 'g', note: 'CUIT (env. 60g sec)', prepSuggestion: 'Cuire en grande quantité en début de semaine'},
             { item: 'Oignon Bio', quantity: 0.5, unit: 'unité' },
             { item: 'Curry en poudre Bio', quantity: 1, unit: 'c.c.' },
             { item: 'Huile Bio', quantity: 1, unit: 'c.c.' },
-            { item: 'Légumes Bio variés coupés', quantity: 200, unit: 'g', note: '(courgette, carotte...)' },
-            { item: 'Pois chiches Bio CUITS', quantity: 150, unit: 'g' },
+            { item: 'Légumes Bio variés coupés', quantity: 200, unit: 'g', note: '(courgette, carotte, patate douce...)' },
+            { item: 'Pois chiches Bio', quantity: 150, unit: 'g', note: 'CUITS', prepSuggestion: 'Cuire en grande quantité en début de semaine'},
             { item: 'Tomates concassées Bio', quantity: 200, unit: 'g' },
             { item: 'Lait de coco Bio', quantity: 100, unit: 'ml', optional: true },
             { item: 'Sel, Poivre', quantity: null, unit: 'Selon goût' }
@@ -408,8 +398,8 @@ export const recipes = {
         ingredients: [
             { item: 'Semoule complète Bio', quantity: 70, unit: 'g', note: 'sec' },
             { item: 'Eau bouillante', quantity: null, unit: 'QS', note: 'environ 1.5x le volume' },
-            { item: 'Pois chiches Bio CUITS', quantity: 100, unit: 'g' },
-            { item: 'Légumes variés crus/cuits Bio', quantity: 200, unit: 'g' },
+            { item: 'Pois chiches Bio', quantity: 100, unit: 'g', note: 'CUITS', prepSuggestion: 'Cuire en grande quantité en début de semaine'},
+            { item: 'Légumes variés crus/cuits Bio', quantity: 200, unit: 'g'},
             { item: 'Yaourt nature Bio', quantity: 2, unit: 'c.s.', note: 'pour la sauce' },
             { item: 'Jus de citron Bio', quantity: 0.25, unit: 'unité', note: 'pour la sauce' },
             { item: 'Herbes fraîches Bio hachées', quantity: null, unit: 'Selon goût', optional: true },
@@ -441,8 +431,8 @@ export const recipes = {
         mealType: 'dinner',
         ingredients: [
             { item: 'Tofu ferme Bio', quantity: 180, unit: 'g' },
-            { item: 'Pommes de terre Bio CUITES', quantity: 250, unit: 'g' },
-            { item: 'Blettes Bio', quantity: 1, unit: 'partie de botte' },
+            { item: 'Pommes de terre Bio', quantity: 250, unit: 'g', note: 'CUITes', prepSuggestion: 'Cuire à l\'avance'},
+            { item: 'Blettes Bio', quantity: 1, unit: 'partie de botte', prepSuggestion: 'Laver/Couper à l\'avance' },
             { item: 'Oignon Bio', quantity: 0.5, unit: 'unité' },
             { item: 'Curcuma Bio', quantity: 0.5, unit: 'c.c.' },
             { item: 'Huile Bio', quantity: 1.5, unit: 'c.c.', note: '1-2' },
@@ -450,7 +440,7 @@ export const recipes = {
         ],
         steps: [
             'Couper les pommes de terre cuites en dés.',
-            'Laver les blettes. Séparer les côtes des feuilles. Émincer les côtes et hacher grossièrement les feuilles.',
+            'Laver les blettes (si pas déjà fait). Séparer les côtes des feuilles. Émincer les côtes et hacher grossièrement les feuilles.',
             'Faire chauffer 1 c.c. d\'huile dans une poêle. Ajouter les dés de pommes de terre et faire sauter jusqu\'à ce qu\'ils soient dorés. Réserver.',
             'Ajouter un peu d\'huile si besoin. Faire revenir les côtes de blettes quelques minutes. Ajouter les feuilles et cuire jusqu\'à ce qu\'elles soient tendres. Saler, poivrer. Réserver avec les pommes de terre.',
             'Émietter le tofu à la fourchette.',
@@ -496,13 +486,15 @@ export const recipes = {
         title: 'Déj Chili Sin Carne',
         emoji: '🌶️',
         mealType: 'lunch',
+        canBatchCook: true,
+        batchCookNotes: 'Excellent réchauffé, se conserve 3 jours au frigo.',
         ingredients: [
-            { item: 'Riz complet Bio CUIT', quantity: 150, unit: 'g', note: 'environ (50g sec)' },
+            { item: 'Riz complet Bio', quantity: 150, unit: 'g', note: 'CUIT (env. 50g sec)', prepSuggestion: 'Cuire en grande quantité en début de semaine'},
             { item: 'Oignon Bio', quantity: 0.5, unit: 'unité' },
             { item: 'Huile Bio', quantity: 1, unit: 'c.c.' },
             { item: 'Paprika doux Bio', quantity: 0.5, unit: 'c.c.' },
             { item: 'Cumin en poudre Bio', quantity: 0.5, unit: 'c.c.', optional: true },
-            { item: 'Haricots rouges Bio CUITS', quantity: 150, unit: 'g' },
+            { item: 'Haricots rouges Bio', quantity: 150, unit: 'g', note: 'CUITS', prepSuggestion: 'Cuire en grande quantité en début de semaine'},
             { item: 'Maïs doux Bio', quantity: 80, unit: 'g', note: 'égoutté' },
             { item: 'Tomates concassées Bio', quantity: 200, unit: 'g' },
             { item: 'Sel, Poivre', quantity: null, unit: 'Selon goût' }
@@ -515,8 +507,7 @@ export const recipes = {
             'Saler et poivrer. Bien mélanger.',
             'Laisser mijoter à feu doux pendant 15-20 minutes.',
             'Servir le chili chaud sur le riz.'
-        ],
-        notes: 'Idéal pour batch cooking! Se conserve bien 2-3 jours au frigo.'
+        ]
     },
     'snack_yogurt_fruit': {
         id: 'snack_yogurt_fruit',
@@ -534,6 +525,8 @@ export const recipes = {
         title: 'Dîner Soupe Légumes/Lentilles',
         emoji: '🥣',
         mealType: 'dinner',
+        canBatchCook: true,
+        batchCookNotes: 'Se conserve très bien 3-4 jours, idéale pour plusieurs repas.',
         ingredients: [
             { item: 'Oignon Bio', quantity: 0.5, unit: 'unité' },
             { item: 'Légumes de saison Bio variés', quantity: 300, unit: 'g', note: 'carottes, poireaux, céleri, PDT...' },
@@ -551,8 +544,7 @@ export const recipes = {
             'Ajouter les lentilles rincées dans la casserole, verser l\'eau ou le bouillon. Saler et poivrer.',
             'Porter à ébullition, puis réduire le feu, couvrir et laisser mijoter 20-25 minutes, jusqu\'à ce que les légumes et les lentilles soient bien tendres.',
             'Optionnel : Mixer la soupe à l\'aide d\'un mixeur plongeant pour obtenir une consistance plus lisse.'
-        ],
-        notes: 'Idéal pour batch cooking! Se conserve bien et se réchauffe facilement.'
+        ]
     },
     'snack_evening_compote_fruit': {
         id: 'snack_evening_compote_fruit',
@@ -566,6 +558,7 @@ export const recipes = {
         ],
         notes: 'Choisir l\'un ou l\'autre.'
     },
+    // Recette par défaut (gardée au cas où)
     'default': {
         id: 'default',
         title: 'Recette à venir',
@@ -575,3 +568,8 @@ export const recipes = {
         steps: ['La recette détaillée pour ce plat sera bientôt ajoutée !']
     }
 };
+
+// Assigner l'ID 'overnight_oats_1' à la recette 'overnight_oats_2' (pour Vendredi)
+// Cela évite la duplication si c'est la même recette.
+// Si les ingrédients sont légèrement différents, il faudrait créer un ID distinct.
+recipes['overnight_oats_2'] = recipes['overnight_oats_1'];
