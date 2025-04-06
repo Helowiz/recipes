@@ -1,35 +1,45 @@
-# recipes
+## 🌟 Features
 
-This template should help get you started developing with Vue 3 in Vite.
+*   **Weekly Display:** Clear day-by-day menu visualization.
+*   **Daily Details:** Planned physical activity shown for each day.
+*   **Interactive Recipes:** Click on a meal to view its detailed recipe in a modal window.
+*   **Shopping List:** Quick access to the complete shopping list for the week via a dedicated button and modal.
+*   **Meal Prep List:** List of advance preparation tasks (batch cooking) accessible via a dedicated button and modal.
+*   **Continuous Deployment:** Automatically deployed to GitHub Pages via GitHub Actions on every push to the `main` branch.
 
-## Recommended IDE Setup
+## 🛠️ Tech Stack
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+*   **Frontend Framework:** [Vue.js](https://vuejs.org/) 3 (with Composition API & `<script setup>`)
+*   **Build Tool:** [Vite](https://vitejs.dev/)
+*   **Languages:** JavaScript, HTML5, CSS3
+*   **Styling:** Plain CSS (with CSS variables) & Google Fonts (Poppins, Nunito, Pacifico)
+*   **CI/CD & Hosting:** [GitHub Actions](https://github.com/features/actions) & [GitHub Pages](https://pages.github.com/)
+*   **Code Quality:** ESLint & Prettier
 
-## Customize configuration
+## 🚀 Quick Start (Local)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+To run the project on your local machine:
 
-## Project Setup
+1.  **Prerequisites:** Ensure you have [Node.js](https://nodejs.org/) (version 16+) and [npm](https://www.npmjs.com/) (or [yarn](https://yarnpkg.com/)) installed.
 
-```sh
-npm install
-```
+2.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/<YourGitHubUsername>/<YourRepoName>.git
+    cd <YourRepoName>
+    ```
+    <!-- Replace <YourGitHubUsername> and <YourRepoName> -->
 
-### Compile and Hot-Reload for Development
+3.  **Install Dependencies:**
+    ```bash
+    npm install
+    # or: yarn install
+    ```
 
-```sh
-npm run dev
-```
+4.  **Run the Development Server:**
+    ```bash
+    npm run dev
+    # or: yarn dev
+    ```
 
-### Compile and Minify for Production
+5.  Open your browser and navigate to the address provided (usually `http://localhost:5173`).
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
