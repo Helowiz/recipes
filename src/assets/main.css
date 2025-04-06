@@ -1,0 +1,54 @@
+/* --- Google Fonts (déjà importées dans index.html, mais bon à savoir) --- */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Nunito:wght@400;700&family=Pacifico&display=swap'); */
+
+/* --- Variables Couleurs & Styles Globaux --- */
+:root {
+  --color-primary: #1abc9c; /* Teal principal */
+  --color-secondary: #3498db; /* Bleu titres jour */
+  --color-accent: #e67e22; /* Orange */
+  --color-prep: #f39c12;   /* Jaune/Orange pour Prep */
+  --color-background: #f8fdfc;
+  --color-card-bg: #ffffff;
+  --color-text: #444;
+  --color-text-light: #777;
+  --color-border: #eef;
+
+  --meal-breakfast: #f39c12;
+  --meal-lunch: #2ecc71;
+  --meal-snack: #f1c40f;
+  --meal-dinner: #8e44ad;
+  --meal-evening-snack: #34495e;
+}
+
+/* --- Réinitialisation Basique & Styles Généraux --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, #e0f7fa 0%, #f8fdfc 100%);
+  color: var(--color-text);
+  line-height: 1.7;
+  padding: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Styles généraux pour les liens, etc. si nécessaire */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #16a085;
+}
+
+/* Peut-être des styles pour les titres globaux h1, h2... s'ils ne sont pas spécifiques aux composants */
