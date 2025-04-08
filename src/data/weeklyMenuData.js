@@ -1,4 +1,5 @@
-// Données structurées pour le menu hebdomadaire
+// src/data/weeklyMenuData.js
+
 export const weeklyMenu = [
     {
         id: 1, name: 'Lundi', dayOfWeek: 1, activity: 'Rameur', activityEmoji: '🚣‍♀️',

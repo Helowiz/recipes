@@ -10,7 +10,7 @@ export const recipes = {
             { item: 'Flocons d\'avoine Bio', quantity: 70, unit: 'g' },
             { item: 'Lait Bio ou Eau', quantity: 250, unit: 'ml', note: 'environ' },
             { item: 'Fruit de saison Bio', quantity: 1, unit: 'unité' },
-            { item: 'Graines de chia Bio', quantity: 1, unit: 'c.s.' }, // cuillère à soupe
+            { item: 'Graines de chia Bio', quantity: 1, unit: 'c.s.' },
             { item: 'Graines de tournesol Bio', quantity: 20, unit: 'g' },
         ],
         steps: [
@@ -83,8 +83,8 @@ export const recipes = {
         ],
         steps: ['Tartiner les galettes avec la purée d\'oléagineux.']
     },
-    'overnight_oats_1': { // ID unique pour la recette, même si utilisée plusieurs fois
-        id: 'overnight_oats_recipe', // Renommé pour clarté
+    'overnight_oats_1': { 
+        id: 'overnight_oats_recipe', 
         title: 'Overnight Oats',
         emoji: '☀️',
         mealType: 'breakfast',
@@ -94,14 +94,13 @@ export const recipes = {
              'Laisser au frigo toute la nuit.'
         ],
         ingredients: [
-            // Utiliser les quantités les plus courantes ou moyennes si elles varient légèrement
             { item: 'Flocons d\'avoine Bio', quantity: 60, unit: 'g' },
             { item: 'Lait Bio ou Yaourt', quantity: 175, unit: 'ml/g', note: '150-200' },
             { item: 'Graines de chia Bio', quantity: 1, unit: 'c.s.' },
             { item: 'Fruit Bio (ex: poire, banane écrasée)', quantity: 100, unit: 'g', note: 'râpé ou coupé' },
         ],
         steps: [
-            'Sortir du réfrigérateur et déguster !' // L'étape principale est la veille
+            'Sortir du réfrigérateur et déguster !'
         ]
     },
      'lunch_quinoa_chickpea_salad': {
@@ -329,14 +328,13 @@ export const recipes = {
             { item: 'Amandes Bio', quantity: 15, unit: 'g' },
             { item: 'Chocolat noir >70% Bio', quantity: 2, unit: 'carrés (20g)' }
         ],
-        // Pas d'étapes spécifiques
     },
      'dinner_curry_chickpea': {
         id: 'dinner_curry_chickpea',
         title: 'Dîner Curry Pois Chiches',
         emoji: '🍛',
         mealType: 'dinner',
-        canBatchCook: true, // Bon candidat
+        canBatchCook: true,
         batchCookNotes: 'Se congèle bien (sans le riz).',
         ingredients: [
             { item: 'Riz basmati Bio', quantity: 150, unit: 'g', note: 'CUIT (env. 60g sec)', prepSuggestion: 'Cuire en grande quantité en début de semaine'},
@@ -558,7 +556,6 @@ export const recipes = {
         ],
         notes: 'Choisir l\'un ou l\'autre.'
     },
-    // Recette par défaut (gardée au cas où)
     'default': {
         id: 'default',
         title: 'Recette à venir',
@@ -569,7 +566,9 @@ export const recipes = {
     }
 };
 
-// Assigner l'ID 'overnight_oats_1' à la recette 'overnight_oats_2' (pour Vendredi)
-// Cela évite la duplication si c'est la même recette.
-// Si les ingrédients sont légèrement différents, il faudrait créer un ID distinct.
-recipes['overnight_oats_2'] = recipes['overnight_oats_1'];
+if (recipes['overnight_oats_1']) {
+    recipes['overnight_oats_2'] = recipes['overnight_oats_1'];
+} else {
+    recipes['overnight_oats_2'] = recipes['default'];
+    console.warn("Recette source 'overnight_oats_1' non trouvée pour 'overnight_oats_2'");
+}
